@@ -1,0 +1,138 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Image Enhancer Pro - Deployment Guide</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Arial, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f9f9f9;
+        }
+        
+        .container {
+            background-color: white;
+            padding: 40px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        
+        h1, h2, h3, h4, h5, h6 {
+            color: #2c3e50;
+            margin-top: 30px;
+            margin-bottom: 15px;
+        }
+        
+        h1 {
+            border-bottom: 3px solid #3498db;
+            padding-bottom: 10px;
+            color: #2980b9;
+            text-align: center;
+        }
+        
+        h2 {
+            border-bottom: 2px solid #ecf0f1;
+            padding-bottom: 5px;
+        }
+        
+        code {
+            background-color: #f8f9fa;
+            padding: 2px 4px;
+            border-radius: 3px;
+            font-family: 'Monaco', 'Consolas', monospace;
+            font-size: 0.9em;
+        }
+        
+        pre {
+            background-color: #f8f9fa;
+            padding: 15px;
+            border-radius: 5px;
+            overflow-x: auto;
+            border-left: 4px solid #3498db;
+        }
+        
+        ul {
+            margin: 10px 0;
+            padding-left: 20px;
+        }
+        
+        li {
+            margin: 5px 0;
+        }
+        
+        p {
+            margin: 15px 0;
+            text-align: justify;
+        }
+        
+        .header {
+            text-align: center;
+            margin-bottom: 40px;
+            padding: 20px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border-radius: 8px;
+        }
+        
+        .header h1 {
+            margin: 0;
+            color: white;
+            border: none;
+        }
+        
+        .header p {
+            margin: 10px 0 0 0;
+            opacity: 0.9;
+        }
+        
+        .footer {
+            text-align: center;
+            margin-top: 40px;
+            padding: 20px;
+            background-color: #f8f9fa;
+            border-radius: 8px;
+            color: #666;
+        }
+        
+        @media print {
+            body { 
+                font-size: 12pt; 
+                background-color: white;
+            }
+            .container { 
+                box-shadow: none; 
+                background-color: white;
+            }
+            .header {
+                background: #333 !important;
+                color: white !important;
+            }
+        }
+        
+        @page {
+            margin: 1in;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>AI Image Enhancer Pro - Deployment Guide</h1>
+            <p>Professional Documentation</p>
+        </div>
+        
+        <p><h1>AI Image Enhancer Pro - Deployment Guide</h1></p><p><h2>Table of Contents</h2><br>1. [Overview](#overview)<br>2. [Prerequisites](#prerequisites)<br>3. [Deployment Methods](#deployment-methods)<br>4. [Replit Deployment (Recommended)](#replit-deployment)<br>5. [Manual Server Deployment](#manual-server-deployment)<br>6. [Environment Configuration](#environment-configuration)<br>7. [Database Setup](#database-setup)<br>8. [Domain Configuration](#domain-configuration)<br>9. [SSL Certificate Setup](#ssl-certificate-setup)<br>10. [Monitoring and Maintenance](#monitoring-and-maintenance)<br>11. [Troubleshooting](#troubleshooting)</p><p><h2>Overview</h2></p><p>AI Image Enhancer Pro is a professional web application built with:<br><ul><li>**Frontend**: React 18 with TypeScript, Vite, Tailwind CSS</li></ul><br><ul><li>**Backend**: Express.js with TypeScript</li></ul><br><ul><li>**Database**: PostgreSQL with Drizzle ORM</li></ul><br><ul><li>**File Storage**: Local filesystem (configurable for cloud storage)</li></ul><br><ul><li>**AI Processing**: Simulated processing (ready for integration with services like Replicate)</li></ul></p><p><h2>Prerequisites</h2></p><p><h3>System Requirements</h3><br><ul><li>**Node.js**: Version 18 or higher</li></ul><br><ul><li>**npm**: Version 8 or higher</li></ul><br><ul><li>**PostgreSQL**: Version 14 or higher</li></ul><br><ul><li>**Server**: Linux-based system with minimum 2GB RAM</li></ul><br><ul><li>**Storage**: Minimum 10GB free space for image uploads</li></ul></p><p><h3>Domain Requirements</h3><br><ul><li>Purchased domain name</li></ul><br><ul><li>DNS management access</li></ul><br><ul><li>SSL certificate (Let's Encrypt recommended)</li></ul></p><p><h2>Deployment Methods</h2></p><p><h3>Method 1: Replit Deployment (Recommended)</h3></p><p><h4>Step 1: Prepare Your Replit Project</h4><br>1. Ensure your project is working locally<br>2. All environment variables are configured<br>3. Database is properly set up and connected</p><p><h4>Step 2: Deploy via Replit</h4><br>1. Navigate to your Replit project<br>2. Click the "Deploy" button in the top-right corner<br>3. Choose "Autoscale" deployment for production traffic<br>4. Configure your custom domain (if purchased)<br>5. Set up environment variables in deployment settings</p><p><h4>Step 3: Configure Custom Domain</h4><br>1. Go to Replit Deployments dashboard<br>2. Click "Domains" in your deployment<br>3. Add your custom domain<br>4. Update DNS records as instructed:<br>   - Type: CNAME<br>   - Name: @ (or subdomain)<br>   - Value: your-app.replit.app</p><p><h4>Step 4: SSL Configuration</h4><br><ul><li>Replit automatically handles SSL certificates</li></ul><br><ul><li>Your site will be accessible via HTTPS</li></ul></p><p><h3>Method 2: Manual Server Deployment</h3></p><p><h4>Step 1: Server Setup</h4><br><pre><code>bash<br><h1>Update system packages</h1><br>sudo apt update && sudo apt upgrade -y</p><p><h1>Install Node.js</h1><br>curl -fsSL https://deb.nodesource.com/setup_18.x | sudo -E bash -<br>sudo apt-get install -y nodejs</p><p><h1>Install PM2 for process management</h1><br>sudo npm install -g pm2</p><p><h1>Install PostgreSQL</h1><br>sudo apt-get install -y postgresql postgresql-contrib</p><p><h1>Install Nginx (reverse proxy)</h1><br>sudo apt-get install -y nginx</p><p><h1>Install Certbot for SSL</h1><br>sudo apt-get install -y certbot python3-certbot-nginx<br></code></pre></p><p><h4>Step 2: Database Setup</h4><br><pre><code>bash<br><h1>Create database user</h1><br>sudo -u postgres createuser --interactive --pwprompt aienhancer</p><p><h1>Create database</h1><br>sudo -u postgres createdb aienhancer_db -O aienhancer</p><p><h1>Configure PostgreSQL</h1><br>sudo nano /etc/postgresql/14/main/postgresql.conf<br><h1>Enable connections: listen_addresses = '*'</h1></p><p>sudo nano /etc/postgresql/14/main/pg_hba.conf<br><h1>Add: host aienhancer_db aienhancer 0.0.0.0/0 md5</h1></p><p><h1>Restart PostgreSQL</h1><br>sudo systemctl restart postgresql<br></code></pre></p><p><h4>Step 3: Application Deployment</h4><br><pre><code>bash<br><h1>Clone your repository</h1><br>git clone https://github.com/yourusername/ai-image-enhancer.git<br>cd ai-image-enhancer</p><p><h1>Install dependencies</h1><br>npm install</p><p><h1>Build the application</h1><br>npm run build</p><p><h1>Create environment file</h1><br>nano .env<br></code></pre></p><p><h4>Step 4: Environment Configuration</h4><br><pre><code>env<br><h1>Database Configuration</h1><br>DATABASE_URL=postgresql://aienhancer:password@localhost:5432/aienhancer_db<br>PGHOST=localhost<br>PGPORT=5432<br>PGUSER=aienhancer<br>PGPASSWORD=your_password<br>PGDATABASE=aienhancer_db</p><p><h1>Application Configuration</h1><br>NODE_ENV=production<br>PORT=3000</p><p><h1>Optional: Add API keys for future integrations</h1><br><h1>REPLICATE_API_TOKEN=your_replicate_token</h1><br><h1>OPENAI_API_KEY=your_openai_key</h1><br></code></pre></p><p><h4>Step 5: Database Migration</h4><br><pre><code>bash<br><h1>Run database migration</h1><br>npm run db:push</p><p><h1>Verify database connection</h1><br>npm run db:studio<br></code></pre></p><p><h4>Step 6: Process Management</h4><br><pre><code>bash<br><h1>Start application with PM2</h1><br>pm2 start ecosystem.config.js</p><p><h1>Save PM2 configuration</h1><br>pm2 save</p><p><h1>Setup PM2 startup script</h1><br>pm2 startup<br></code></pre></p><p>Create <code>ecosystem.config.js</code>:<br><pre><code>javascript<br>module.exports = {<br>  apps: [{<br>    name: 'ai-image-enhancer',<br>    script: 'dist/index.js',<br>    instances: 'max',<br>    exec_mode: 'cluster',<br>    env: {<br>      NODE_ENV: 'production',<br>      PORT: 3000<br>    },<br>    error_file: 'logs/err.log',<br>    out_file: 'logs/out.log',<br>    log_file: 'logs/combined.log',<br>    time: true<br>  }]<br>};<br></code></pre></p><p><h4>Step 7: Nginx Configuration</h4><br><pre><code>bash<br><h1>Create Nginx configuration</h1><br>sudo nano /etc/nginx/sites-available/aienhancer<br></code></pre></p><p><pre><code>nginx<br>server {<br>    listen 80;<br>    server_name yourdomain.com www.yourdomain.com;</p><p>    location / {<br>        proxy_pass http://localhost:3000;<br>        proxy_http_version 1.1;<br>        proxy_set_header Upgrade $http_upgrade;<br>        proxy_set_header Connection 'upgrade';<br>        proxy_set_header Host $host;<br>        proxy_set_header X-Real-IP $remote_addr;<br>        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;<br>        proxy_set_header X-Forwarded-Proto $scheme;<br>        proxy_cache_bypass $http_upgrade;<br>        proxy_read_timeout 86400;<br>    }</p><p>    location /uploads {<br>        alias /path/to/your/app/uploads;<br>        expires 1y;<br>        add_header Cache-Control "public, immutable";<br>    }</p><p>    client_max_body_size 50M;<br>}<br></code></pre></p><p><pre><code>bash<br><h1>Enable site</h1><br>sudo ln -s /etc/nginx/sites-available/aienhancer /etc/nginx/sites-enabled/</p><p><h1>Test configuration</h1><br>sudo nginx -t</p><p><h1>Restart Nginx</h1><br>sudo systemctl restart nginx<br></code></pre></p><p><h4>Step 8: SSL Certificate Setup</h4><br><pre><code>bash<br><h1>Obtain SSL certificate</h1><br>sudo certbot --nginx -d yourdomain.com -d www.yourdomain.com</p><p><h1>Test auto-renewal</h1><br>sudo certbot renew --dry-run<br></code></pre></p><p><h2>Environment Configuration</h2></p><p><h3>Required Environment Variables</h3><br><pre><code>env<br><h1>Database (Required)</h1><br>DATABASE_URL=postgresql://user:password@host:port/database<br>PGHOST=localhost<br>PGPORT=5432<br>PGUSER=your_user<br>PGPASSWORD=your_password<br>PGDATABASE=your_database</p><p><h1>Application (Required)</h1><br>NODE_ENV=production<br>PORT=3000</p><p><h1>Optional API Keys (for future integrations)</h1><br>REPLICATE_API_TOKEN=your_token<br>OPENAI_API_KEY=your_key<br></code></pre></p><p><h2>Database Setup</h2></p><p><h3>PostgreSQL Configuration</h3><br>1. **Create Database User**:<br>   <pre><code>sql<br>   CREATE USER aienhancer WITH PASSWORD 'secure_password';<br>   </code></pre></p><p>2. **Create Database**:<br>   <pre><code>sql<br>   CREATE DATABASE aienhancer_db OWNER aienhancer;<br>   </code></pre></p><p>3. **Grant Permissions**:<br>   <pre><code>sql<br>   GRANT ALL PRIVILEGES ON DATABASE aienhancer_db TO aienhancer;<br>   </code></pre></p><p><h3>Schema Migration</h3><br><pre><code>bash<br><h1>Install Drizzle CLI</h1><br>npm install -g drizzle-kit</p><p><h1>Push schema to database</h1><br>npm run db:push</p><p><h1>Verify schema</h1><br>npm run db:studio<br></code></pre></p><p><h2>Domain Configuration</h2></p><p><h3>DNS Setup</h3><br>1. **A Record**: Point to your server's IP<br>   - Type: A<br>   - Name: @<br>   - Value: YOUR_SERVER_IP</p><p>2. **CNAME Record**: For www subdomain<br>   - Type: CNAME<br>   - Name: www<br>   - Value: yourdomain.com</p><p>3. **Verification**: Use <code>dig</code> command to verify<br>   <pre><code>bash<br>   dig yourdomain.com<br>   dig www.yourdomain.com<br>   </code></pre></p><p><h2>SSL Certificate Setup</h2></p><p><h3>Let's Encrypt (Free)</h3><br><pre><code>bash<br><h1>Install Certbot</h1><br>sudo apt-get install certbot python3-certbot-nginx</p><p><h1>Obtain certificate</h1><br>sudo certbot --nginx -d yourdomain.com -d www.yourdomain.com</p><p><h1>Auto-renewal cron job</h1><br>sudo crontab -e<br><h1>Add: 0 12 * * * /usr/bin/certbot renew --quiet</h1><br></code></pre></p><p><h3>Commercial SSL Certificate</h3><br>1. Purchase SSL certificate from CA<br>2. Generate CSR on your server<br>3. Upload certificate files to server<br>4. Configure Nginx with certificate paths</p><p><h2>Monitoring and Maintenance</h2></p><p><h3>Health Monitoring</h3><br><pre><code>bash<br><h1>Check application status</h1><br>pm2 status</p><p><h1>View logs</h1><br>pm2 logs ai-image-enhancer</p><p><h1>Monitor resources</h1><br>pm2 monit<br></code></pre></p><p><h3>Database Maintenance</h3><br><pre><code>bash<br><h1>Backup database</h1><br>pg_dump -U aienhancer -h localhost aienhancer_db > backup.sql</p><p><h1>Restore database</h1><br>psql -U aienhancer -h localhost aienhancer_db < backup.sql<br></code></pre></p><p><h3>Log Management</h3><br><pre><code>bash<br><h1>Rotate logs</h1><br>pm2 install pm2-logrotate</p><p><h1>Configure log rotation</h1><br>pm2 set pm2-logrotate:max_size 10M<br>pm2 set pm2-logrotate:retain 30<br></code></pre></p><p><h2>Troubleshooting</h2></p><p><h3>Common Issues</h3></p><p><h4>Database Connection Errors</h4><br><pre><code>bash<br><h1>Check PostgreSQL status</h1><br>sudo systemctl status postgresql</p><p><h1>Check database connectivity</h1><br>psql -U aienhancer -h localhost -d aienhancer_db<br></code></pre></p><p><h4>Port Conflicts</h4><br><pre><code>bash<br><h1>Check port usage</h1><br>sudo netstat -tlnp | grep :3000</p><p><h1>Kill process using port</h1><br>sudo kill -9 PID<br></code></pre></p><p><h4>Nginx Issues</h4><br><pre><code>bash<br><h1>Check Nginx status</h1><br>sudo systemctl status nginx</p><p><h1>Test configuration</h1><br>sudo nginx -t</p><p><h1>Check error logs</h1><br>sudo tail -f /var/log/nginx/error.log<br></code></pre></p><p><h4>SSL Certificate Issues</h4><br><pre><code>bash<br><h1>Check certificate expiry</h1><br>sudo certbot certificates</p><p><h1>Renew certificate</h1><br>sudo certbot renew --force-renewal<br></code></pre></p><p><h3>Performance Optimization</h3></p><p><h4>Database Optimization</h4><br><pre><code>sql<br>-- Create indexes for better performance<br>CREATE INDEX idx_enhancements_status ON enhancements(status);<br>CREATE INDEX idx_enhancements_created_at ON enhancements(created_at);<br>CREATE INDEX idx_enhancements_user_id ON enhancements(user_id);<br></code></pre></p><p><h4>Nginx Optimization</h4><br><pre><code>nginx<br><h1>Enable gzip compression</h1><br>gzip on;<br>gzip_vary on;<br>gzip_min_length 10240;<br>gzip_proxied expired no-cache no-store private must-revalidate auth;<br>gzip_types<br>    text/plain<br>    text/css<br>    text/xml<br>    text/javascript<br>    application/javascript<br>    application/xml+rss<br>    application/json;</p><p><h1>Enable caching</h1><br>location ~* \.(js|css|png|jpg|jpeg|gif|ico|svg)$ {<br>    expires 1y;<br>    add_header Cache-Control "public, immutable";<br>}<br></code></pre></p><p><h2>Security Considerations</h2></p><p><h3>Server Security</h3><br><pre><code>bash<br><h1>Update system regularly</h1><br>sudo apt update && sudo apt upgrade</p><p><h1>Configure firewall</h1><br>sudo ufw enable<br>sudo ufw allow ssh<br>sudo ufw allow 'Nginx Full'</p><p><h1>Disable root login</h1><br>sudo nano /etc/ssh/sshd_config<br><h1>Set: PermitRootLogin no</h1><br></code></pre></p><p><h3>Application Security</h3><br><ul><li>Use environment variables for sensitive data</li></ul><br><ul><li>Implement rate limiting</li></ul><br><ul><li>Validate all user inputs</li></ul><br><ul><li>Use HTTPS only</li></ul><br><ul><li>Regular security updates</li></ul></p><p><h2>Maintenance Schedule</h2></p><p><h3>Daily</h3><br><ul><li>Monitor application logs</li></ul><br><ul><li>Check system resources</li></ul><br><ul><li>Verify SSL certificate status</li></ul></p><p><h3>Weekly</h3><br><ul><li>Database backup</li></ul><br><ul><li>Log rotation</li></ul><br><ul><li>Security updates</li></ul></p><p><h3>Monthly</h3><br><ul><li>Full system backup</li></ul><br><ul><li>Performance analysis</li></ul><br><ul><li>Security audit</li></ul></p><p>This deployment guide provides comprehensive instructions for deploying your AI Image Enhancer Pro application to production environments. Choose the method that best fits your technical requirements and budget.</p>
+        
+        <div class="footer">
+            <p>Generated on 7/14/2025</p>
+            <p>AI Image Enhancer Pro - Professional Image Enhancement Solution</p>
+        </div>
+    </div>
+</body>
+</html>

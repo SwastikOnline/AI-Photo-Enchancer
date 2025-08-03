@@ -1,0 +1,138 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Image Enhancer Pro - Hostinger Deployment Guide</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Arial, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f9f9f9;
+        }
+        
+        .container {
+            background-color: white;
+            padding: 40px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        
+        h1, h2, h3, h4, h5, h6 {
+            color: #2c3e50;
+            margin-top: 30px;
+            margin-bottom: 15px;
+        }
+        
+        h1 {
+            border-bottom: 3px solid #3498db;
+            padding-bottom: 10px;
+            color: #2980b9;
+            text-align: center;
+        }
+        
+        h2 {
+            border-bottom: 2px solid #ecf0f1;
+            padding-bottom: 5px;
+        }
+        
+        code {
+            background-color: #f8f9fa;
+            padding: 2px 4px;
+            border-radius: 3px;
+            font-family: 'Monaco', 'Consolas', monospace;
+            font-size: 0.9em;
+        }
+        
+        pre {
+            background-color: #f8f9fa;
+            padding: 15px;
+            border-radius: 5px;
+            overflow-x: auto;
+            border-left: 4px solid #3498db;
+        }
+        
+        ul {
+            margin: 10px 0;
+            padding-left: 20px;
+        }
+        
+        li {
+            margin: 5px 0;
+        }
+        
+        p {
+            margin: 15px 0;
+            text-align: justify;
+        }
+        
+        .header {
+            text-align: center;
+            margin-bottom: 40px;
+            padding: 20px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border-radius: 8px;
+        }
+        
+        .header h1 {
+            margin: 0;
+            color: white;
+            border: none;
+        }
+        
+        .header p {
+            margin: 10px 0 0 0;
+            opacity: 0.9;
+        }
+        
+        .footer {
+            text-align: center;
+            margin-top: 40px;
+            padding: 20px;
+            background-color: #f8f9fa;
+            border-radius: 8px;
+            color: #666;
+        }
+        
+        @media print {
+            body { 
+                font-size: 12pt; 
+                background-color: white;
+            }
+            .container { 
+                box-shadow: none; 
+                background-color: white;
+            }
+            .header {
+                background: #333 !important;
+                color: white !important;
+            }
+        }
+        
+        @page {
+            margin: 1in;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>AI Image Enhancer Pro - Hostinger Deployment Guide</h1>
+            <p>Professional Documentation</p>
+        </div>
+        
+        <p><h1>AI Image Enhancer Pro - Hostinger Deployment Guide</h1></p><p><h2>Overview</h2></p><p>This guide will walk you through deploying your AI Image Enhancer Pro application to your Hostinger domain. Hostinger provides excellent hosting solutions that can perfectly support your Node.js application.</p><p><h2>Prerequisites</h2></p><p><h3>What You Need</h3><br><ul><li>**Hostinger Account**: With Node.js hosting plan (Business or Cloud plans support Node.js)</li></ul><br><ul><li>**Domain**: Your purchased domain connected to Hostinger</li></ul><br><ul><li>**Database**: PostgreSQL database (available on Hostinger Cloud plans)</li></ul><br><ul><li>**FTP/SSH Access**: For file uploads and server management</li></ul></p><p><h3>Hostinger Plan Requirements</h3><br><ul><li>**Minimum**: Hostinger Business Plan (supports Node.js applications)</li></ul><br><ul><li>**Recommended**: Hostinger Cloud Startup or higher (includes PostgreSQL database)</li></ul><br><ul><li>**Features Needed**: Node.js support, PostgreSQL database, SSL certificate, custom domains</li></ul></p><p><h2>Step 1: Prepare Your Application</h2></p><p><h3>1.1 Build the Application</h3><br><pre><code>bash<br><h1>In your project directory</h1><br>npm run build<br></code></pre></p><p><h3>1.2 Create Production Environment File</h3><br>Create <code>.env.production</code> file:<br><pre><code>env<br>NODE_ENV=production<br>DATABASE_URL=your_hostinger_postgresql_url<br>PORT=3000<br>SESSION_SECRET=your_secure_random_string_here<br></code></pre></p><p><h3>1.3 Prepare Deployment Package</h3><br>Create <code>package-production.json</code> with production dependencies:<br><pre><code>json<br>{<br>  "name": "ai-image-enhancer-pro",<br>  "version": "1.0.0",<br>  "scripts": {<br>    "start": "node dist/index.js",<br>    "postinstall": "npm run db:push"<br>  },<br>  "dependencies": {<br>    "@neondatabase/serverless": "^0.9.0",<br>    "drizzle-orm": "^0.30.0",<br>    "express": "^4.18.0",<br>    "express-session": "^1.17.0",<br>    "multer": "^1.4.0",<br>    "connect-pg-simple": "^9.0.0",<br>    "zod": "^3.22.0",<br>    "nanoid": "^5.0.0"<br>  }<br>}<br></code></pre></p><p><h2>Step 2: Set Up PostgreSQL Database on Hostinger</h2></p><p><h3>2.1 Access Database Manager</h3><br>1. Log into your **Hostinger Control Panel**<br>2. Navigate to **Databases** → **PostgreSQL Databases**<br>3. Click **Create New Database**</p><p><h3>2.2 Create Database</h3><br><ul><li>**Database Name**: <code>ai_image_enhancer</code></li></ul><br><ul><li>**Username**: Create a dedicated user (e.g., <code>img_enhancer_user</code>)</li></ul><br><ul><li>**Password**: Generate a strong password</li></ul><br><ul><li>**Privileges**: Grant ALL privileges</li></ul></p><p><h3>2.3 Get Connection Details</h3><br>Note down these details:<br><ul><li>**Host**: Usually <code>localhost</code> or provided hostname</li></ul><br><ul><li>**Port**: Usually <code>5432</code></li></ul><br><ul><li>**Database**: <code>ai_image_enhancer</code></li></ul><br><ul><li>**Username**: Your created username</li></ul><br><ul><li>**Password**: Your created password</li></ul></p><p><h3>2.4 Construct Database URL</h3><br><pre><code><br>DATABASE_URL=postgresql://username:password@hostname:5432/ai_image_enhancer<br></code></pre></p><p><h2>Step 3: Deploy to Hostinger</h2></p><p><h3>3.1 Upload Files via File Manager</h3></p><p><h4>Method A: Using Hostinger File Manager</h4><br>1. Access **File Manager** in Hostinger Control Panel<br>2. Navigate to your domain's <code>public_html</code> folder<br>3. Upload these files and folders:<br>   <pre><code><br>   dist/                 (built application)<br>   uploads/              (create empty folder)<br>   package.json          (production version)<br>   .env.production       (rename to .env)<br>   </code></pre></p><p><h4>Method B: Using FTP Client</h4><br>1. Use FTP client (FileZilla, WinSCP, etc.)<br>2. Connect using Hostinger FTP credentials<br>3. Upload files to <code>/public_html/</code></p><p><h3>3.2 Set Up Node.js Application</h3></p><p><h4>Access Terminal (SSH)</h4><br>If your plan supports SSH:<br><pre><code>bash<br><h1>Connect via SSH</h1><br>ssh your_username@your_domain.com</p><p><h1>Navigate to your domain folder</h1><br>cd public_html</p><p><h1>Install dependencies</h1><br>npm install</p><p><h1>Set up database</h1><br>npm run db:push<br></code></pre></p><p><h4>Using Hostinger Control Panel</h4><br>1. Go to **Advanced** → **Node.js**<br>2. Click **Create Application**<br>3. Set **Application Root**: <code>/public_html</code><br>4. Set **Application URL**: Your domain<br>5. Set **Application Startup File**: <code>dist/index.js</code><br>6. Set **Node.js Version**: 18.x or higher</p><p><h2>Step 4: Configure Environment Variables</h2></p><p><h3>4.1 Set Environment Variables in Hostinger</h3><br>1. Go to **Node.js** section in Control Panel<br>2. Click on your application<br>3. Add environment variables:<br>   - <code>NODE_ENV</code>: <code>production</code><br>   - <code>DATABASE_URL</code>: Your PostgreSQL connection string<br>   - <code>SESSION_SECRET</code>: Your secure random string<br>   - <code>PORT</code>: <code>3000</code></p><p><h3>4.2 Upload Environment File</h3><br>Ensure your <code>.env</code> file is in the application root with:<br><pre><code>env<br>NODE_ENV=production<br>DATABASE_URL=postgresql://username:password@hostname:5432/ai_image_enhancer<br>SESSION_SECRET=your_secure_random_string_here<br>PORT=3000<br></code></pre></p><p><h2>Step 5: Set Up File Permissions</h2></p><p><h3>5.1 Create Uploads Directory</h3><br><pre><code>bash<br>mkdir uploads<br>chmod 755 uploads<br></code></pre></p><p><h3>5.2 Set Proper Permissions</h3><br><pre><code>bash<br><h1>Make sure your application can write to uploads</h1><br>chmod -R 755 uploads/<br>chmod -R 755 dist/<br></code></pre></p><p><h2>Step 6: Configure Domain and SSL</h2></p><p><h3>6.1 Point Domain to Application</h3><br>1. In Hostinger Control Panel, go to **Domains**<br>2. Click **Manage** on your domain<br>3. Set up subdirectory if needed, or point to root</p><p><h3>6.2 Enable SSL Certificate</h3><br>1. Go to **Security** → **SSL/TLS**<br>2. Enable **Let's Encrypt SSL** (free)<br>3. Force HTTPS redirect</p><p><h2>Step 7: Start Your Application</h2></p><p><h3>7.1 Start Node.js Application</h3><br>1. In **Node.js** section, click **Start** on your application<br>2. Monitor the logs for any errors<br>3. Check application status</p><p><h3>7.2 Test Your Application</h3><br>1. Visit your domain: <code>https://yourdomain.com</code><br>2. Test image upload functionality<br>3. Verify database connectivity<br>4. Check all enhancement features</p><p><h2>Step 8: Production Optimizations</h2></p><p><h3>8.1 Set Up Process Management</h3><br>Create <code>ecosystem.config.js</code>:<br><pre><code>javascript<br>module.exports = {<br>  apps: [{<br>    name: 'ai-image-enhancer',<br>    script: 'dist/index.js',<br>    instances: 1,<br>    autorestart: true,<br>    watch: false,<br>    max_memory_restart: '1G',<br>    env: {<br>      NODE_ENV: 'production',<br>      PORT: 3000<br>    }<br>  }]<br>};<br></code></pre></p><p><h3>8.2 Configure Nginx (if available)</h3><br>If you have access to Nginx configuration:<br><pre><code>nginx<br>server {<br>    listen 80;<br>    server_name yourdomain.com;<br>    <br>    location / {<br>        proxy_pass http://localhost:3000;<br>        proxy_http_version 1.1;<br>        proxy_set_header Upgrade $http_upgrade;<br>        proxy_set_header Connection 'upgrade';<br>        proxy_set_header Host $host;<br>        proxy_set_header X-Real-IP $remote_addr;<br>        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;<br>        proxy_set_header X-Forwarded-Proto $scheme;<br>        proxy_cache_bypass $http_upgrade;<br>    }<br>    <br>    location /uploads/ {<br>        alias /path/to/your/uploads/;<br>        expires 1y;<br>        add_header Cache-Control "public, immutable";<br>    }<br>}<br></code></pre></p><p><h2>Step 9: Monitoring and Maintenance</h2></p><p><h3>9.1 Monitor Application Health</h3><br><ul><li>Check Node.js application status in Control Panel</li></ul><br><ul><li>Monitor resource usage (CPU, Memory, Disk)</li></ul><br><ul><li>Review application logs regularly</li></ul></p><p><h3>9.2 Database Maintenance</h3><br><pre><code>sql<br>-- Clean up old enhancements (run monthly)<br>DELETE FROM enhancements <br>WHERE status = 'completed' <br>AND "createdAt" < NOW() - INTERVAL '30 days';</p><p>-- Check database size<br>SELECT pg_size_pretty(pg_database_size('ai_image_enhancer'));<br></code></pre></p><p><h3>9.3 File Cleanup</h3><br><pre><code>bash<br><h1>Clean old uploaded files (run weekly)</h1><br>find uploads/ -type f -mtime +7 -delete<br></code></pre></p><p><h2>Troubleshooting</h2></p><p><h3>Common Issues</h3></p><p><h4>Application Won't Start</h4><br>1. **Check Node.js version**: Ensure using Node.js 18.x or higher<br>2. **Verify dependencies**: Run <code>npm install</code> again<br>3. **Check logs**: Review error logs in Control Panel<br>4. **Database connection**: Verify DATABASE_URL is correct</p><p><h4>Database Connection Failed</h4><br>1. **Check credentials**: Verify username, password, host, port<br>2. **Test connection**: Use psql or database client to test<br>3. **Firewall**: Ensure database port is accessible<br>4. **SSL mode**: Add <code>?sslmode=require</code> to DATABASE_URL if needed</p><p><h4>File Upload Issues</h4><br>1. **Permissions**: Check uploads directory permissions (755)<br>2. **Disk space**: Ensure sufficient storage available<br>3. **File size limits**: Check Hostinger upload limits<br>4. **Path issues**: Verify uploads path is correct</p><p><h4>Performance Issues</h4><br>1. **Resource limits**: Check if hitting plan limits<br>2. **Database optimization**: Add indexes if needed<br>3. **File cleanup**: Implement regular cleanup schedule<br>4. **Caching**: Add caching headers for static files</p><p><h3>Getting Help</h3></p><p><h4>Hostinger Support</h4><br><ul><li>**Knowledge Base**: Help center with detailed guides</li></ul><br><ul><li>**Live Chat**: 24/7 customer support</li></ul><br><ul><li>**Tickets**: Submit technical support requests</li></ul></p><p><h4>Application Support</h4><br><ul><li>**Documentation**: Refer to user manual and deployment guide</li></ul><br><ul><li>**Logs**: Check application and database logs</li></ul><br><ul><li>**Database**: Use PostgreSQL tools for debugging</li></ul></p><p><h2>Security Considerations</h2></p><p><h3>9.1 Environment Security</h3><br><ul><li>**Never commit** <code>.env</code> files to version control</li></ul><br><ul><li>**Use strong passwords** for database and sessions</li></ul><br><ul><li>**Regular updates**: Keep dependencies updated</li></ul><br><ul><li>**Monitor access**: Review server logs regularly</li></ul></p><p><h3>9.2 Application Security</h3><br><ul><li>**File validation**: Application validates uploaded file types</li></ul><br><ul><li>**Size limits**: Configured file size restrictions</li></ul><br><ul><li>**Session security**: Secure session configuration</li></ul><br><ul><li>**HTTPS only**: Force SSL/TLS encryption</li></ul></p><p><h2>Performance Optimization</h2></p><p><h3>10.1 Database Optimization</h3><br><pre><code>sql<br>-- Add indexes for better performance<br>CREATE INDEX idx_enhancements_user_id ON enhancements(user_id);<br>CREATE INDEX idx_enhancements_status ON enhancements(status);<br>CREATE INDEX idx_enhancements_created_at ON enhancements("createdAt");<br></code></pre></p><p><h3>10.2 Application Optimization</h3><br><ul><li>**Static file serving**: Use Nginx for static files</li></ul><br><ul><li>**Compression**: Enable gzip compression</li></ul><br><ul><li>**Caching**: Implement response caching</li></ul><br><ul><li>**CDN**: Consider using Hostinger CDN for global delivery</li></ul></p><p><h2>Backup Strategy</h2></p><p><h3>10.1 Database Backups</h3><br><pre><code>bash<br><h1>Daily database backup</h1><br>pg_dump ai_image_enhancer > backup_$(date +%Y%m%d).sql<br></code></pre></p><p><h3>10.2 File Backups</h3><br><ul><li>**Regular backups**: Schedule backups of uploads directory</li></ul><br><ul><li>**Version control**: Keep application code in Git</li></ul><br><ul><li>**Documentation**: Backup configuration files</li></ul></p><p><h2>Cost Optimization</h2></p><p><h3>10.1 Plan Selection</h3><br><ul><li>**Business Plan**: Good for testing and low traffic</li></ul><br><ul><li>**Cloud Startup**: Better for production with database needs</li></ul><br><ul><li>**Cloud Professional**: For high traffic and advanced features</li></ul></p><p><h3>10.2 Resource Management</h3><br><ul><li>**Monitor usage**: Track CPU, memory, and storage</li></ul><br><ul><li>**Optimize images**: Implement image compression</li></ul><br><ul><li>**Clean old files**: Regular cleanup saves storage costs</li></ul><br><ul><li>**Database optimization**: Keep database size manageable</li></ul></p><p><h2>Conclusion</h2></p><p>Your AI Image Enhancer Pro is now successfully deployed on Hostinger! The application provides professional image enhancement capabilities with:</p><p><ul><li>**Professional Interface**: Dark theme optimized for user engagement</li></ul><br><ul><li>**Revenue Features**: Advertisement integration and affiliate marketing</li></ul><br><ul><li>**Robust Processing**: 4-stage AI enhancement pipeline</li></ul><br><ul><li>**User Management**: Complete enhancement history and storage control</li></ul><br><ul><li>**Production Ready**: Secure, scalable, and maintainable</li></ul></p><p>For ongoing success:<br>1. **Monitor performance** regularly<br>2. **Implement backup strategy**<br>3. **Keep security updated**<br>4. **Scale resources** as traffic grows<br>5. **Optimize for revenue** based on user analytics</p><p>Your professional image enhancement service is ready to generate revenue on your Hostinger domain!</p>
+        
+        <div class="footer">
+            <p>Generated on 7/14/2025</p>
+            <p>AI Image Enhancer Pro - Professional Image Enhancement Solution</p>
+        </div>
+    </div>
+</body>
+</html>
